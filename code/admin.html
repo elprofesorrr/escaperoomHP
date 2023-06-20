@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Escape room admin</title>
+        <script>
+            // JavaScript function to validate the form
+            function validateForm() {
+                // Get the values of the extra fields for each question
+                var vraag1Extra = document.getElementById('Vraag 1_extra').value;
+                var vraag2Extra = document.getElementById('Vraag 2_extra').value;
+                var vraag3Extra = document.getElementById('Vraag 3_extra').value;
+                var vraag4Extra = document.getElementById('Vraag 4_extra').value;
+                var vraag5Extra = document.getElementById('Vraag 5_extra').value;
+                var vraag6Extra = document.getElementById('Vraag 6_extra').value;
+
+                // Validate vraag1Extra field
+                if (![0, 50, 100, 150, 200, 250].includes(Number(vraag1Extra))) {
+                    alert('Vraag 1_extra moet een waarde hebben van 0, 50, 100, 150, 200 of 250.');
+                    return false;
+                }
+
+                // Validate vraag2Extra field
+                if (![0, 50, 100, 150, 200, 250].includes(Number(vraag2Extra))) {
+                    alert('Vraag 2_extra moet een waarde hebben van 0, 50, 100, 150, 200 of 250.');
+                    return false;
+                }
+
+                // Validate vraag3Extra field
+                if (![0, 50, 100, 150, 200, 250].includes(Number(vraag3Extra))) {
+                    alert('Vraag 3_extra moet een waarde hebben van 0, 50, 100, 150, 200 of 250.');
+                    return false;
+                }
+
+                // Validate vraag4Extra field
+                if (isNaN(Number(vraag4Extra)) || Number(vraag4Extra) >= 11) {
+                    alert('Vraag 4_extra moet een getal zijn onder de 11.');
+                    return false;
+                }
+
+                // Validate vraag5Extra field
+                if (isNaN(Number(vraag5Extra)) || Number(vraag5Extra) >= 11) {
+                    alert('Vraag 5_extra moet een getal zijn onder de 11.');
+                    return false;
+                }
+
+                // Validate vraag6Extra field
+                if (isNaN(Number(vraag6Extra)) || Number(vraag6Extra) >= 11) {
+                    alert('Vraag 6_extra moet een getal zijn onder de 11.');
+                    return false;
+                }
+
+                return true; // Return true if all fields are valid
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Admin pagina</h1>
+        <h2>Welkom op de admin pagina. Op deze vragen kunnen de vragen en antwoorden ingevuld worden</h2> 
+        
+        <p> Het antwoord van vraag 1 t/m 3 kan 0-50-100-150-200-250 zijn. Het antwoord van vraag 4 t/m 6 moet liggen tussen 0 en 10.</p><br>
+        <form action="/submit" method="GET" onsubmit="return validateForm();">
+            <!-- Form for Verhaal -->
+            <label for="verhaal"> Verhaal: </label>
+            <input type="text" id="verhaal 1" name="Verhaal"> 
+            <button type="submit">Submit</button>
+        </form><br>
+        
+        <!-- Forms for Vraag 1 to Vraag 6 -->
+        <form action="/submit2" method="GET" onsubmit="return validateForm();">
+            <label for="Vraag 1">Vraag 1:</label>
+            <input type="text" id="Vraag 1" name="Vraag 1">
+            <input type="text" id="Vraag 1_extra" name="Vraag 1_extra">
+            <button type="submit">Submit</button>
+        </form><br>
+        
+        <form action="/submit3" method="GET" onsubmit="return validateForm();">
+            <label for="Vraag 2">Vraag 2:</label>
+            <input type="text" id="Vraag 2" name="Vraag 2">
+            <input type="text" id="Vraag 2_extra" name="Vraag 2_extra">
+            <button type="submit">Submit</button>
+        </form><br>
+        
+        <form action="/submit4" method="GET" onsubmit="return validateForm();">
+            <label for="Vraag 3">Vraag 3:</label>
+            <input type="text" id="Vraag 3" name="Vraag 3">
+            <input type="text" id="Vraag 3_extra" name="Vraag 3_extra">
+            <button type="submit">Submit</button>
+        </form><br>
+        
+        <form action="/submit5" method="GET" onsubmit="return validateForm();">
+            <label for="Vraag 4">Vraag 4:</label>
+            <input type="text" id="Vraag 4" name="Vraag 4">
+            <input type="text" id="Vraag 4_extra" name="Vraag 4_extra">
+            <button type="submit">Submit</button>
+        </form><br>
+        
+        <form action="/submit6" method="GET" onsubmit="return validateForm();">
+            <label for="Vraag 5">Vraag 5:</label>
+            <input type="text" id="Vraag 5" name="Vraag 5">
+            <input type="text" id="Vraag 5_extra" name="Vraag 5_extra">
+            <button type="submit">Submit</button>
+        </form><br>
+        
+        <form action="/submit7" method="GET" onsubmit="return validateForm();">
+            <label for="Vraag 6">Vraag 6:</label>
+            <input type="text" id="Vraag 6" name="Vraag 6">
+            <input type="text" id="Vraag 6_extra" name="Vraag 6_extra">
+            <button type="submit">Submit</button>
+        </form><br>
+        
+        <!-- Form for Einde -->
+        <form action="/submit8" method="GET" onsubmit="return validateForm();">
+            <label for="end"> Einde   :  </label>
+            <input type="text" id="end" name="end"> 
+            <button type="submit">Submit</button>
+        </form><br>
+        
+        <!-- Button to go back to the home page -->
+        <button type="button" onclick="location.href='/home'">Naar escape room</button>
+    </body>
+</html>

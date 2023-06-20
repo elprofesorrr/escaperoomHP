@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Escape room</title>
+    <style>
+        /* CSS styling */
+
+        /* Styling for the body */
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: "Arial", sans-serif;
+        }
+
+        /* Styling for the centered section */
+        .centered-section {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #333;
+            border: 2px solid #ffcc00;
+            border-radius: 5px;
+        }
+
+        /* Styling for heading level 1 */
+        h1 {
+            font-size: 32px;
+            color: #ffcc00;
+        }
+
+        /* Styling for heading level 2 */
+        h2 {
+            font-size: 24px;
+            color: #ffcc00;
+        }
+
+        /* Styling for paragraphs */
+        p {
+            font-size: 18px;
+        }
+
+        /* Styling for unordered lists */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        /* Styling for list items */
+        li {
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        /* Styling for buttons */
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-section">
+        
+        <!-- Question 4 -->
+        <h2>Vraag 4</h2>
+        <p id="submitted-values"></p>
+           
+        <!-- value button and anwers -->
+        <h1>Antwoord vraag 4: </h1>
+        <p> Druk op de knop om het antwoord in te vullen, heb je een lager antwoord nodig druk op reset. </p>
+        <p id="button-status"></p>
+        
+        <!-- Button to submit the answer for Question 4 -->
+        <button onclick="button1()">Antwoord vraag 4</button>
+        
+        <!-- Button to reset the answer -->
+        <button onclick="reset()">reset</button> 
+        
+        <!-- Button to navigate to the next step -->
+        <button type="button" onclick="location.href='/step5'">Next</button>
+        
+    </div>
+    
+    <script>
+        // Function to update the submitted values for Question 4
+        function updateResult() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get-result4', true);
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    var values = this.responseText.split(', ');
+                    var submittedValues = document.getElementById('submitted-values');
+                    submittedValues.textContent = '';
+
+                    values.forEach(function(value) {
+                        var lineText = value.replace(/\+/g, ' ').replace(/\\r\\nAccept-Encoding:/g, ' ');
+                        submittedValues.innerHTML += lineText + '<br>';
+                    });
+
+                }
+            };
+            xhr.send();
+        }
+
+        // Update the submitted values for Question 4 every second
+        setInterval(updateResult, 1000);
+
+        // Function to update the analog reading
+        function updateAnalogReading() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/analog', true);
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    document.getElementById('analog-reading').textContent = this.responseText;
+                }
+            };
+            xhr.send();
+        }
+
+        // Update the analog reading every second
+        setInterval(updateAnalogReading, 1000);
+            
+        // Function to update the button status
+        function updateButtonStatus() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/button', true);
+            xhr.onload = function() {
+                if (this.status == 200) {
+                    document.getElementById('button-status').textContent = this.responseText;
+                }
+            };
+            xhr.send();
+        }
+            
+        // Update the button status every second
+        setInterval(updateButtonStatus, 1000);
+
+        // Function to handle the button1 click event
+        function button1() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/bsave', false);
+            xhr.send();
+        }
+            
+        // Function to handle the reset button click event
+        function reset() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/reset', false);
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
