@@ -14,7 +14,7 @@ Welcome to the Escape Room user guide! This guide will provide you with step-by-
 
 2. **Change your SSID and password:**
    - Navigate to the cloned repository folder.
-   - Open the code file that contains the network configuration (e.g., `config.py`).
+   - Open the code file.
    - Locate the SSID and password variables and replace them with your own Wi-Fi network credentials.
    - Save the changes.
 
